@@ -1,13 +1,13 @@
 package com.example.addon;
 
 import com.example.addon.modules.StashLogger;
-import meteordevelopment.meteorclient.systems.addons.Addon;
+import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AddonTemplate extends Addon {
+public class AddonTemplate extends MeteorAddon {
     public static final Logger LOG = LoggerFactory.getLogger("Thenest Hack");
     public static final Category THENEST_HACK = new Category("Thenest Hack");
 
@@ -15,13 +15,13 @@ public class AddonTemplate extends Addon {
     public void onInitialize() {
         LOG.info("Initializing Thenest Hack Addon");
 
-        Modules.get().addCategory(THENEST_HACK);
+        // Đăng ký module StashLogger
         Modules.get().add(new StashLogger());
     }
 
     @Override
     public void onRegisterCategories() {
-        Modules.get().addCategory(THENEST_HACK);
+        Modules.get().registerCategory(THENEST_HACK);
     }
 
     @Override

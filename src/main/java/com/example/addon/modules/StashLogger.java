@@ -151,7 +151,6 @@ public class StashLogger extends Module {
         String logMessage = String.format("[%s] Stash Found! (%d containers) Near %s at X: %d, Y: %d, Z: %d (Chunk: [%d, %d], %s)",
             timeStr, count, type, pos.getX(), pos.getY(), pos.getZ(), chunkX, chunkZ, dim);
 
-        // 1. Lưu trực tiếp vào file text âm thầm
         try {
             File file = new File("thenest_stashes.txt");
             FileWriter writer = new FileWriter(file, true);
@@ -161,7 +160,6 @@ public class StashLogger extends Module {
             e.printStackTrace();
         }
 
-        // 2. Ngắt kết nối khỏi server ngay lập tức
         if (mc.getConnection() != null) {
             String disconnectReason = String.format(
                 "§c[Thenest Hack - Auto Log] Stash Discovered!\n" +
@@ -173,7 +171,6 @@ public class StashLogger extends Module {
             mc.getConnection().getConnection().disconnect(Component.literal(disconnectReason));
         }
 
-        // 3. Tự động tắt (toggle) module ngay sau khi phát hiện và log thành công
         this.toggle();
     }
 }
